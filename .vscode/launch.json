@@ -1,0 +1,83 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            // Nome que aparece no dropdown de debug
+            "name": "Python: Arquivo Atual",
+            "type": "debugpy",
+            "request": "launch",
+            // Debuga o arquivo Python aberto no momento
+            "program": "${file}",
+            "console": "integratedTerminal",
+            // Debug apenas seu código (não entra em bibliotecas)
+            "justMyCode": true,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            }
+        },
+        {
+            "name": "Python: Pipeline Principal",
+            "type": "debugpy",
+            "request": "launch",
+            // ------------------------------------------------------------
+            // Situação: Apenas UM ÚNICO projeto na pasta
+            // "program": "${workspaceFolder}/[Pasta Raiz do Projeto]/[Programaprincipal].py",
+            // [Pasta Raiz do Projeto] - Informar o nome da pasta Principal do Projeto, normalmente: [app] ou [src]
+            // [Programa Principal] - Normalmente [main]
+            //
+            // Aponta para o script principal do projeto
+            // Esta situação é quando temos mais de um projeto na mesma pasta e o programa principal é
+            // diferente de main.py
+            // "program": "${workspaceFolder:📊 Jornada de Dados - Projeto 1}/src/create_measurements.py",
+            // ------------------------------------------------------------
+            "program": "${workspaceFolder}/app/main.py",
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            }
+        },
+        {
+            "name": "Python: Com Argumentos",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            // Passa argumentos para o script
+            "args": [
+                "--input",
+                "data/input.csv",
+                "--output",
+                "data/output.csv"
+            ],
+            "justMyCode": true
+        },
+        {
+            "name": "Python: Testes com Pytest",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "pytest",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            // Argumentos do pytest
+            "args": [
+                "tests/",
+                "-v",
+                "--tb=short"
+            ]
+        },
+    ]
+    // => COMPOUNDS: Executar múltiplas configs ao mesmo tempo
+    // "compounds": [
+    //     {
+    //         "name": "Executar Projeto Completo",
+    //         "configurations": [
+    //             "Python: Pipeline Principal"
+    //         ],
+    //         // Executa configurações em paralelo (se true)
+    //         "preLaunchTask": "",
+    //         "stopAll": true
+    //     }
+    // ]
+}

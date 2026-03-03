@@ -1,0 +1,50 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Limpar Cache Python",
+            "type": "shell",
+            "command": "find . -type d -name '__pycache__' -exec rm -rf {} + && find . -type f -name '*.pyc' -delete",
+            "problemMatcher": [],
+            "group": "none"
+        },
+        {
+            "label": "Executar Testes",
+            "type": "shell",
+            "command": "pytest tests/ -v --tb=short",
+            "problemMatcher": [],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Instalar Dependências (PIP)",
+            "type": "shell",
+            "command": "pip install -r requirements.txt",
+            "problemMatcher": [],
+            "group": "none"
+        },
+        {
+            "label": "Instalar Dependências (PIP)",
+            "type": "shell",
+            "command": "poetry install",
+            "problemMatcher": [],
+            "group": "none"
+        },
+        {
+            "label": "Formatar Código (Black + isort)",
+            "type": "shell",
+            "command": "black . && isort .",
+            "problemMatcher": [],
+            "group": "none"
+        },
+        {
+            "label": "Análise Estática (Ruff)",
+            "type": "shell",
+            "command": "ruff check .",
+            "problemMatcher": [],
+            "group": "none"
+        }
+    ]
+}

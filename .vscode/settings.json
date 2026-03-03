@@ -1,0 +1,207 @@
+{
+    // => EDITOR - Aparência e Comportamento
+    // Tamanho da fonte no editor
+    "editor.fontSize": 12,
+    // Família de fontes (prioriza JetBrains Mono, fallback para Consolas)
+    // JetBrains Mono tem ligaduras que melhoram leitura de código
+    "editor.fontFamily": "JetBrains Mono, Consolas, 'Courier New', monospace",
+    // Habilita ligaduras de fonte (ex: != vira ≠, >= vira ≥)
+    "editor.fontLigatures": true,
+    // Tamanho do tab (4 espaços - padrão PEP 8 para Python)
+    "editor.tabSize": 4,
+    // Usa espaços ao invés de tabs (importante para Python e Bash)
+    "editor.insertSpaces": true,
+    // Mostra espaços em branco invisíveis (útil para debug)
+    "editor.renderWhitespace": "boundary",
+    // Régua vertical nas colunas 80 e 120 (PEP 8 e boas práticas)
+    "editor.rulers": [
+        80,
+        120
+    ],
+    // Quebra de linha automática no editor
+    "editor.wordWrap": "on",
+    // Minimap (mapa do código à direita)
+    "editor.minimap.enabled": true,
+    // => ARQUIVOS - Salvamento e Codificação
+    // Salva automaticamente após 1 minuto de inatividade
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 60000,
+    // Codificação padrão UTF-8 (importante para compatibilidade)
+    "files.encoding": "utf8",
+    // Fim de linha Unix (LF) - essencial para scripts Bash
+    // Windows usa CRLF, Linux/Mac usa LF
+    "files.eol": "\n",
+    // Remove espaços em branco no final das linhas ao salvar
+    "files.trimTrailingWhitespace": true,
+    // Adiciona linha vazia no final do arquivo (convenção Unix)
+    "files.insertFinalNewline": true,
+    // Formata código automaticamente ao salvar (usa black para Python)
+    "editor.formatOnSave": true,
+    // Formata apenas código modificado (mais rápido)
+    "editor.formatOnSaveMode": "modificationsIfAvailable",
+    // Organiza imports automaticamente ao salvar (Python)
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit"
+    },
+    // => EXPLORER - Oculta/exibe pastas e arquivos no Explorer
+    "files.exclude": {
+        // Cache Python compilado
+        "**/__pycache__": true,
+        // Cache do pytest
+        "**/.pytest_cache": true,
+        // Bytecode Python
+        "**/*.pyc": true,
+        // Cache do mypy
+        "**/.mypy_cache": true,
+        // Cache do ruff
+        "**/.ruff_cache": true,
+        // Mantém visível (útil ver estrutura)
+        "**/.venv": false,
+        // Mantém visível (útil ver branches)
+        "**/.git": false,
+        // Arquivo de sistema macOS
+        "**/.DS_Store": true,
+        // Arquivo de sistema Windows
+        "**/Thumbs.db": true,
+        // Metadata de pacotes Python
+        "**/*.egg-info": true,
+        // Dependências Node (se houver)
+        "**/node_modules": true,
+        // Testes do VS Code
+        "**/.vscode-test": false,
+        // Cache de builds
+        "**/.cache": true,
+        // Mantém visível (build output)
+        "**/dist": false,
+        // Parcel bundler cache
+        "**/.parcel-cache": true
+    },
+    // Pastas que aparecem acima de arquivos no Explorer
+    "explorer.sortOrder": "type",
+    // => PYTHON - Interpretador e Análise
+    // Caminho do interpretador Python (ambiente virtual do projeto)
+    // Para workspace multi-root, especifica qual pasta usar
+    "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+    // Nível de verificação de tipos (basic, strict, off)
+    "python.analysis.typeCheckingMode": "basic",
+    // Pylance: Autocomplete e IntelliSense
+    "python.languageServer": "Pylance",
+    // Importações automáticas ao completar código
+    "python.analysis.autoImportCompletions": true,
+    // Tipo de importação preferido (absolute ou relative)
+    "python.analysis.importFormat": "absolute",
+    // Mostra tipos inferidos inline
+    "python.analysis.inlayHints.functionReturnTypes": true,
+    "python.analysis.inlayHints.variableTypes": true,
+    // => FORMATAÇÃO - Python (Black + isort)
+    // Define Black como formatador padrão para Python
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+        }
+    },
+    // Configurações do Black (compatível com blue)
+    "black-formatter.args": [
+        "--line-length=80", // Comprimento máximo de linha
+        "--target-version=py311" // Versão Python alvo
+    ],
+    // Configurações do isort (compatível com Black)
+    "isort.args": [
+        "--profile=black",
+        "--line-length=100"
+    ],
+    // => BASH/SHELL - Formatação e Linting
+    // Formatação automática de scripts Bash
+    "[shellscript]": {
+        "editor.defaultFormatter": "foxundermoon.shell-format",
+        "editor.formatOnSave": true,
+        "editor.tabSize": 4
+    },
+    // ShellCheck: linter para Bash
+    "shellcheck.enable": true,
+    "shellcheck.executablePath": "shellcheck", // Requer instalação: sudo apt install shellcheck
+    "shellcheck.run": "onType", // Verifica enquanto digita
+    // Shell-format: indentação e estilo
+    "shellformat.flag": "-i 4", // Indentação de 4 espaços
+    // => TERMINAL - Configuração
+    // Define perfis de terminal disponíveis no Windows
+    "terminal.integrated.profiles.windows": {
+        "Git Bash": {
+            "path": "C:\\Program Files\\Git\\usr\\bin\\bash.exe",
+            "icon": "terminal-bash",
+            "args": [
+                "-l"
+            ] // Login shell (carrega .bashrc)
+        },
+        "PowerShell": {
+            "path": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+            "icon": "terminal-powershell"
+        },
+        "CMD": {
+            "path": "C:\\Windows\\System32\\cmd.exe",
+            "icon": "terminal-cmd"
+        }
+    },
+    // Define Git Bash como terminal padrão
+    "terminal.integrated.defaultProfile.windows": "Git Bash",
+    // Tamanho da fonte no terminal
+    "terminal.integrated.fontSize": 12,
+    // Família de fontes no terminal
+    "terminal.integrated.fontFamily": "JetBrains Mono, Consolas, monospace",
+    // Diretório inicial do terminal (usa a pasta atual do workspace)
+    "terminal.integrated.cwd": "${workspaceFolder}",
+    // => BUSCA - // Pastas/arquivos ignorados na busca
+    "search.exclude": {
+        "**/.venv": true,
+        "**/__pycache__": true,
+        "**/.pytest_cache": true,
+        "**/*.pyc": true,
+        "**/node_modules": true,
+        "**/.git": true,
+        "**/dist": true,
+        "**/build": true,
+        "**/.cache": true,
+        "**/*.min.js": true,
+        "**/*.min.css": true
+    },
+    // Usa .gitignore para excluir da busca
+    "search.useIgnoreFiles": true,
+    // => JANELA - Comportamento
+    // Reabre todas as janelas ao iniciar VS Code
+    "window.restoreWindows": "all",
+    // Página inicial ao abrir workspace vazio
+    "workbench.startupEditor": "welcomePageInEmptyWorkbench",
+    // Título da janela (mostra caminho completo)
+    "window.title": "${activeEditorShort}${separator}${rootName}",
+    // => GIT - Configurações de controle de versão
+    // Habilita autofetch do Git a cada 60 segundos
+    "git.autofetch": true,
+    "git.autofetchPeriod": 60,
+    // Confirma antes de fazer sync
+    "git.confirmSync": false,
+    // Habilita commits inteligentes (staging automático)
+    "git.enableSmartCommit": true,
+    // => MARKDOWN - Edição
+    "[markdown]": {
+        "editor.wordWrap": "on",
+        "editor.quickSuggestions": {
+            "comments": "off",
+            "strings": "off",
+            "other": "off"
+        }
+    },
+    // => INTERFACE - Tema e Ícones
+    // Tema de ícones de arquivos
+    "workbench.iconTheme": "vscode-icons",
+    // => SPELL CHECKER - Verificação Ortográfica
+    // Idiomas ativos no spell checker
+    "cSpell.language": "en,pt-BR",
+    // Onde verificar ortografia
+    "cSpell.enableFiletypes": [
+        "markdown",
+        "python",
+        "shellscript"
+    ]
+}
