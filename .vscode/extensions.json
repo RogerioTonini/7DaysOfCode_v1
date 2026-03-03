@@ -2,10 +2,12 @@
     "recommendations": [
         // => INTELIGÊNCIA E PRODUTIVIDADE
         "visualstudioexptteam.vscodeintellicode", // IA para sugestões de código
+
         // => PYTHON - Suporte Completo
         "ms-python.python", // Extensão oficial Python
         "ms-python.vscode-pylance", // IntelliSense avançado
         "ms-python.debugpy", // Debugger Python
+
         // => FORMATAÇÃO E QUALIDADE DE CÓDIGO
         "ms-python.black-formatter", // Formatador Black
         "ms-python.isort", // Organização de imports
@@ -13,30 +15,37 @@
         "esbenp.prettier-vscode", // Formatador universal (JSON, YAML, MD)
         "streetsidesoftware.code-spell-checker", // Verificação ortográfica
         "streetsidesoftware.code-spell-checker-portuguese-brazilian", // Dicionário PT-BR
-        // => BASH/SHELL - Suporte Completo
+// => BASH/SHELL / POWER SHELL - Suporte Completo
         "timonwong.shellcheck", // Linter para Bash
         "foxundermoon.shell-format", // Formatador Bash
         "mads-hartmann.bash-ide-vscode", // IntelliSense para Bash
         "remisa.shellman", // Snippets Bash
+        "ms-vscode.powershell", // Não necessário para projeto Bash/Python
+
         // => GIT E CONTROLE DE VERSÃO
-        "eamodio.gitlens", // Histórico e autoria detalhada
-        "mhutchie.git-graph", // Visualização de branches
-        "github.vscode-pull-request-github", // Integração com GitHub PRs
-        "donjayamanne.githistory", // Histórico visual de commits
+        "bierner.markdown-preview-github-styling", // MARKDOWN - Preview GitHub Style
+        "fabiospampinato.vscode-open-in-github", // GIT - Navegação GitHub
+        "felipecaputo.git-project-manager", // GIT - Gerenciamento de Projetos
+        "github.vscode-pull-request-github", // GITHUB - Pull Requests
+        "ms-vscode.vscode-github-issue-notebooks", // GITHUB - Issue Notebooks
+
         // => DADOS E NOTEBOOKS
         "ms-toolsai.jupyter", // Jupyter Notebooks
         "ms-toolsai.jupyter-keymap", // Atalhos Jupyter
         "ms-toolsai.jupyter-renderers", // Visualizações ricas
         "mechatroner.rainbow-csv", // Colorização de CSV
         "janisdd.vscode-edit-csv", // Editor de CSV
+
         // => DOCUMENTAÇÃO
         "yzhang.markdown-all-in-one", // Edição completa Markdown
         "shd101wyy.markdown-preview-enhanced", // Preview avançado Markdown
         "njpwerner.autodocstring", // Geração automática de docstrings
         "davidanson.vscode-markdownlint", // Linter Markdown
+
         // => INTERFACE E TEMAS
         "vscode-icons-team.vscode-icons", // Ícones de arquivos
         "pkief.material-icon-theme", // Tema alternativo de ícones
+
         // => UTILIDADES
         "gruntfuggly.todo-tree", // Visualiza TODOs e FIXMEs
         "aaron-bond.better-comments", // Comentários coloridos
@@ -50,6 +59,5 @@
     "unwantedRecommendations": [
         "ms-python.pylint", // Use ruff ao invés
         "ms-python.flake8", // Use ruff ao invés
-        "ms-vscode.powershell" // Não necessário para projeto Bash/Python
     ]
 }
