@@ -15,7 +15,7 @@
         "esbenp.prettier-vscode", // Formatador universal (JSON, YAML, MD)
         "streetsidesoftware.code-spell-checker", // Verificação ortográfica
         "streetsidesoftware.code-spell-checker-portuguese-brazilian", // Dicionário PT-BR
-// => BASH/SHELL / POWER SHELL - Suporte Completo
+        // => BASH/SHELL / POWER SHELL - Suporte Completo
         "timonwong.shellcheck", // Linter para Bash
         "foxundermoon.shell-format", // Formatador Bash
         "mads-hartmann.bash-ide-vscode", // IntelliSense para Bash
@@ -41,6 +41,7 @@
         "shd101wyy.markdown-preview-enhanced", // Preview avançado Markdown
         "njpwerner.autodocstring", // Geração automática de docstrings
         "davidanson.vscode-markdownlint", // Linter Markdown
+        "tomoki1207.pdf", // Visualizar arquivos PDF
 
         // => INTERFACE E TEMAS
         "vscode-icons-team.vscode-icons", // Ícones de arquivos

@@ -199,9 +199,9 @@
     // Idiomas ativos no spell checker
     "cSpell.language": "en,pt-BR",
     // Onde verificar ortografia
-    "cSpell.enableFiletypes": [
-        "markdown",
-        "python",
-        "shellscript"
-    ]
+    // "cSpell.enableFiletypes": [
+    //     "markdown",
+    //     "python",
+    //     "shellscript"
+    // ]
 }
