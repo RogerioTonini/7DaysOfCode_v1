@@ -21,7 +21,7 @@ Com estas e outras informações será possível entender o cenário e apresent�
 
 Autor: Francisco Foz - https://github.com/FranciscoFoz/7_Days_of_Code_Alura-Python-Pandas
 
-Layout dos arquivos - https://github.com/RogerioTonini/7DaysOfCode_v1/blob/main/Documentacao/Estrutura-Dados.md
+Layout dos arquivos - https://github.com/RogerioTonini/7DaysOfCode_v1/blob/main/docs/Estrutura-Dados.md
 
 Etapas do projeto - https://github.com/RogerioTonini/7DaysOfCode_v1/blob/main/docs/Etapas-Projeto.md
 
@@ -34,9 +34,117 @@ Etapas do projeto - https://github.com/RogerioTonini/7DaysOfCode_v1/blob/main/do
 - Pyenv - 3.1.1
 - Poetry - 1.8.5
 
-## Instalação
+## Extensões do VSCode que tenho habilitadas no projeto
 
-## Atualização GitHub - Push Inicial
+| _*Nome da extensão*_                          | _*ID Identifier*_                                          |
+| --------------------------------------------- | ---------------------------------------------------------- |
+| autoDocstring - Python Docstring Generator    | njpwerner.autodocstring                                    |
+| Auto Rename Tag                               | formulahendry.auto-rename-tag                              |
+| Bash Debug                                    | rogalmic.bash-debug                                        |
+| Brazilian Portuguese - Code Spell Checker     | streetsidesoftware.code-spell-checker-portuguese-brazilian |
+| Code Runner                                   | formulahendry.code-runner                                  |
+| Code Spell Checker                            | streetsidesoftware.code-spell-checker                      |
+| Draw.io Integration                           | hediet.vscode-drawio                                       |
+| GitHub Copilot Chat                           | github.copilot-chat                                        |
+| GitHub Issue Notebooks                        | ms-vscode.vscode-github-issue-notebooks                    |
+| GitHub Pull Requests                          | github.vscode-pull-request-github                          |
+| Jupyter                                       | ms-toolsai.jupyter                                         |
+| Jupyter Keymap                                | ms-toolsai.jupyter-keymap                                  |
+| Jupyter Notebook Rendere                      | ms-toolsai.jupyter-renderers                               |
+| Jupyter Cell Tags                             | ms-toolsai.vscode-jupyter-cell-tags                        |
+| Live Server                                   | ritwickdey.liveserver                                      |
+| Markdown All in One                           | yzhang.markdown-all-in-one                                 |
+| Markdown Preview Github Styling               | bierner.markdown-preview-github-styles                     |
+| Notepad++ keymap                              | ms-vscode.notepadplusplus-keybindings                      |
+| Prettier - Code formatter                     | esbenp.prettier-vscode                                     |
+| Python Indent                                 | kevinrose.vsc-python-indent                                |
+| Python                                        | ms-python.python                                           |
+| Python                                        | ms-python.python                                           |
+| Python                                        | ms-python.python                                           |
+| Pylance                                       | ms-python.vscode-pylance                                   |
+| Test Adapter Converter                        | ms-vscode.test-adapter-converter                           |
+| shell-format                                  | foxundermoon.shell-format                                  |
+| ShellCheck                                    | timonwong.shellcheck                                       |
+| Test Explorer UI                              | hbenl.vscode-test-explorer                                 |
+| vscode-icons                                  | vscode-icons-team.vscode-icons                             |
+| vscode-pdf                                    | tomoki1207.pdf                                             |
+| vscode-solution-explorer                      | fernandoescolar.vscode-solution-explorer                   |
+| vscode-styled-components                      | styled-components.vscode-styled-components                 |
+| VS Code Jupyter Notebook Previewer            | jithurjacob.nbpreviewer                                    |
+
+## Procedimentos de instalação
+
+1. Faça o clone do repositório
+  ```bash
+   git clone https://github.com/RogerioTonini/7DaysOfCode_v1.git
+  ```
+
+2. Entre no diretório
+  ```bash
+   cd 7DaysOfCode_v1
+  ```
+
+3. Execute o comando para o Poetry administrar o ambiente virtual
+  ```bash
+  poetry config virtualenvs.in-project true
+  ```
+
+4. Informe ao Poetry a versão do Python que você utilizará no projeto
+  ```bash
+  poetry env use 3.11.3
+  ```
+
+5. Instalação das bibliotecas utilizadas no projeto
+  poetry install
+
+#### _*Importante:*_
+  Ao término da instalação de todas as bibliotecas do projeto, você receberá a  mensagem _**warning**_:
+
+  ```bash
+  Warning: The current project could not be installed: No file/folder found for package 7daysofcode-v1
+  If you do not want to install the current project use --no-root.
+  If you want to use Poetry only for dependency management but not for packaging, you can disable package mode by setting package-mode = false in your pyproject.toml file.
+  In a future version of Poetry this warning will become an error!
+  ```
+
+  **Não se preocupe, esta mensagem é apenas um aviso que a pasta _**7daysofcode-v1**_ não foi encontrada, porém o projeto funcionará normalmente.**
+
+6. Copiar o arquivo de .githooks-scripts/commit-msg para .git/hooks
+  ```bash
+  cp -r .githooks-scripts/. .git/hooks/
+  ```
+
+## Estrutura do projeto
+
+```
+├── 📁 .githooks-scripts
+│   └── 📄 commit-mensagem            # Backup do .git\hooks\commit-msg
+│
+├── 📁 .vscode
+│   ├── 📝 extensions.json
+│   ├── 📝 launch.json
+│   ├── 📝 settings.json
+│   └── 📝 tasks.json
+│
+├── 📁 app
+│   ├── 📄 info-Dados.ipynb           # Informações sobre a estrutura de dados
+│   └── 📄 main.ipynb                 # Faz o processo de ETL
+│
+│
+├── 📁 docs
+│   ├── 📝 Dicas-Solucoes.md          # Dicas e as Soluções do Autor
+│   ├── 📝 Estrutura-Dados.md         # Estrutura dos dados ao efetuar o ETL
+│   └── 📝 Etapas-Projeto.md          # Etapas do Projeto
+│
+├── ⚙️ .gitattributes
+├── ⚙️ .gitignore
+├── 📄 LICENSE
+├── 📝 README.md
+├── 📄 poetry.lock
+└── ⚙️ pyproject.toml
+```
+
+## Atualização no GitHub - Push Inicial
 
 ### Commit: Estrutura inicial - Git
 
