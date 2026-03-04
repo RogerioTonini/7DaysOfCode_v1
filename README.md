@@ -192,3 +192,11 @@ git commit -m "feat(app): criar estrutura base da aplicação"
 git add tests/
 git commit -m "test: adicionar estrutura de testes"
 ```
+
+## Execução
+
+O arquivo _**main.ipynb**_ é responsável por realizar a etapa de ETL.
+Criei  uma *Contante* chamada _*PATH_BASE*_, responsável por armazenar o local onde serão gravados os diversos arquivos gerados no processo.
+Altere o conteúdo para pasta que desejar.
+
+_**Importante:**_ Como os arquivos gerados podem ser maiores que 100GB e o GitHub não aceita arquivos maiores que isso porque o objetivo não é armazenar dados.
