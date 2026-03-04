@@ -67,6 +67,8 @@
         "**/*.egg-info": true,
         // Dependências Node (se houver)
         "**/node_modules": true,
+        // VS Code
+        "**/.vscode": false,
         // Testes do VS Code
         "**/.vscode-test": false,
         // Cache de builds
