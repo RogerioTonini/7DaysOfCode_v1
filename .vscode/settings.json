@@ -1,7 +1,7 @@
 {
     // => EDITOR - Aparência e Comportamento
     // Tamanho da fonte no editor
-    "editor.fontSize": 12,
+    "editor.fontSize": 14,
     // Família de fontes (prioriza JetBrains Mono, fallback para Consolas)
     // JetBrains Mono tem ligaduras que melhoram leitura de código
     "editor.fontFamily": "JetBrains Mono, Consolas, 'Courier New', monospace",
@@ -21,7 +21,7 @@
     // Quebra de linha automática no editor
     "editor.wordWrap": "on",
     // Minimap (mapa do código à direita)
-    "editor.minimap.enabled": true,
+    "editor.minimap.enabled": false,
     // => ARQUIVOS - Salvamento e Codificação
     // Salva automaticamente após 1 minuto de inatividade
     "files.autoSave": "afterDelay",
@@ -131,11 +131,9 @@
     // Define perfis de terminal disponíveis no Windows
     "terminal.integrated.profiles.windows": {
         "Git Bash": {
-            "path": "C:\\Program Files\\Git\\usr\\bin\\bash.exe",
+            "path": "D:\\Program Files\\Git\\usr\\bin\\bash.exe",
             "icon": "terminal-bash",
-            "args": [
-                "-l"
-            ] // Login shell (carrega .bashrc)
+            "args": ["--login", "-l"] // Login shell (carrega .bashrc)
         },
         "PowerShell": {
             "path": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
@@ -148,6 +146,8 @@
     },
     // Define Git Bash como terminal padrão
     "terminal.integrated.defaultProfile.windows": "Git Bash",
+    "terminal.integrated.inheritEnv": true,
+    "terminal.integrated.shellIntegration.enabled": false,
     // Tamanho da fonte no terminal
     "terminal.integrated.fontSize": 12,
     // Família de fontes no terminal

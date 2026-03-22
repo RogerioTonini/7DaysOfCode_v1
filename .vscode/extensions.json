@@ -48,13 +48,13 @@
         "pkief.material-icon-theme", // Tema alternativo de ícones
 
         // => UTILIDADES
-        "gruntfuggly.todo-tree", // Visualiza TODOs e FIXMEs
         "aaron-bond.better-comments", // Comentários coloridos
         "oderwat.indent-rainbow", // Colorização de indentação
         "wayou.vscode-todo-highlight", // Destaca TODOs
         "christian-kohler.path-intellisense", // Autocomplete de paths
         "ms-vscode-remote.remote-ssh", // Desenvolvimento remoto via SSH
-        "ms-vscode.remote-explorer" // Explorer remoto
+        "ms-vscode.remote-explorer", // Explorer remoto
+        "shinotatwu-ds.file-tree-generator"
     ],
     // ==> EXTENSÕES NÃO RECOMENDADAS (podem causar conflito) <==
     "unwantedRecommendations": [
