@@ -38,7 +38,7 @@ def read_csv() -> pd.DataFrame | None:
     _fn: str = inspect.currentframe().f_code.co_name
     file: Path = (
         Path(cfg_app.caminhos.PATH_DATA)
-        / f"{cfg_cdu.esquema.ARQUIVO_CSV}.{cfg_app.file.EXT_CSV}"
+        / f"{cfg_cdu.esquema.ARQUIVO_CSV}.{cfg_app.arquivo.EXT_CSV}"
     )
 
     logger.info(f"[{_fn}] - Lendo arquivo: {file}")

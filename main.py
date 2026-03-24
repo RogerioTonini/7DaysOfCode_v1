@@ -45,19 +45,19 @@ def main() -> None:
             sys.exit(1)
 
         # Verifica a existência da tabela tb_emprestimos_raw e carrega os dados
-        # df: pd.DataFrame = load_url_emprestimos()
+        df: pd.DataFrame = load_url_emprestimos()
 
-        # if df.empty:
-        #     logger.error("Nenhum arquivo CSV carregado")
-        #     print("Nenhum arquivo CSV carregado, verificar arquivo logs")
-        #     sys.exit(1)
+        if df.empty:
+            logger.error("Nenhum arquivo CSV carregado")
+            print("Nenhum arquivo CSV carregado, verificar arquivo logs")
+            sys.exit(1)
 
-        # if not check_table_raw(df):
-        #     logger.error(f"[{_fn}] - Falha ao criar tabela RAW")
-        #     print("Falha ao criar tabela RAW, verificar arquivo logs")
-        #     sys.exit(1)
+        if not check_table_raw(df):
+            logger.error(f"[{_fn}] - Falha ao criar tabela RAW")
+            print("Falha ao criar tabela RAW, verificar arquivo logs")
+            sys.exit(1)
 
-        # logger.info(f"[{_fn}] - Carga de dados finalizada com sucesso")
+        logger.info(f"[{_fn}] - Carga de dados finalizada com sucesso")
 
     except Exception as e:
         logger.critical(f"Erro crítico: {e}", exc_info=True)
