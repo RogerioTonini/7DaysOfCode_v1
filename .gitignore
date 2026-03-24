@@ -3,7 +3,11 @@
 # ------------------------------------------------------------------------------------------
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
-Solucao-v1/
+# Pastas diversas
+_S*
+tmp/
+temp/
+
 # Arquivo referente ao ambiente virtual do Python
 .python-version
 
