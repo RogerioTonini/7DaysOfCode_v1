@@ -98,8 +98,6 @@ def create_table(
         return False
 
 
-# Rever o parâmetro: cfg_cdu.tabela.TABELA
-# Rever o parâmetro: cfg_emprestimos.tabela.TABELA
 def check_table_exists(engine: Engine, table_name: str) -> bool:
     """
     Verifica se tb_CDU existe no banco.
