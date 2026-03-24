@@ -17,7 +17,7 @@ def connect_db() -> Engine | None:
     Returns:
         Engine | None: Engine do SQLAlchemy se conexão OK, None caso contrário.
     """
-    _fn = inspect.currentframe().f_code.co_name
+    _fn: str = inspect.currentframe().f_code.co_name
 
     connection_string: str = (
         f"mysql+mysqlconnector://{db_cfg.DB_USER}:{db_cfg.DB_PASSWORD}"
@@ -26,42 +26,46 @@ def connect_db() -> Engine | None:
     )
 
     if cfg_app.app.DEBUG:
-        logger.debug(f"[{_fn}] Iniciando conexão com o banco de dados...")
+        logger.debug(f"[{_fn}] - Iniciando conexão com o banco de dados...")
         logger.debug(
-            f"[{_fn}] Host: {db_cfg.DB_HOST} | Porta: {db_cfg.DB_PORT}"
+            f"[{_fn}] - Host: {db_cfg.DB_HOST} | Porta: {db_cfg.DB_PORT}"
         )
         logger.debug(
-            f"[{_fn}] Banco: {db_cfg.DB_NAME} | Usuário: {db_cfg.DB_USER}"
+            f"[{_fn}] - Banco: {db_cfg.DB_NAME} | Usuário: {db_cfg.DB_USER}"
         )
 
     try:
-        engine = create_engine(
+        engine: Engine = create_engine(
             connection_string,
             pool_pre_ping=True,  # Valida conexão antes de usar do pool
-            echo=cfg_app.app.DEBUG,  # Exibe SQL gerado somente em modo debug
+            echo=False,
+            # Gera mensagem no arquivo de LOG PARA DEBUG
+            # echo=cfg_app.app.DEBUG,  # Exibe SQL gerado somente em modo debug
         )
 
         # Valida a conexão de forma explícita (SQLAlchemy 2.x)
         with engine.connect() as connection:
             connection.execute(text("SELECT 1"))
-            logger.info(f"[{_fn}] ===== Conexão com o Banco de Dados OK =====")
+            logger.info(f"[{_fn}] - Conexão com o Banco de Dados OK")
 
         return engine
 
     except exc.OperationalError as e:
-        _ex = type(e).__name__
-        logger.error(f"[{_fn}] [{_ex}] Verifique host/porta/credenciais: {e}")
+        _ex: str = type(e).__name__
+        logger.error(
+            f"[{_fn}] - [{_ex}] - Verifique host/porta/credenciais: {e}"
+        )
         return None
 
     except exc.SQLAlchemyError as e:
-        _ex = type(e).__name__
-        logger.error(f"[{_fn}] [{_ex}] Erro inesperado do SQLAlchemy: {e}")
+        _ex: str = type(e).__name__
+        logger.error(f"[{_fn}] - [{_ex}] - Erro inesperado do SQLAlchemy: {e}")
         return None
 
     except Exception as e:
-        _ex = type(e).__name__
+        _ex: str = type(e).__name__
         logger.error(
-            f"[{_fn}] [{_ex}] Erro geral ao conectar ao banco de dados: {e}"
+            f"[{_fn}] - [{_ex}] - Erro geral ao conectar ao banco de dados: {e}"
         )
         return None
 
@@ -76,7 +80,7 @@ def test_connect() -> bool:
     """
     from app.model.create_db import create_database
 
-    _fn = inspect.currentframe().f_code.co_name
+    _fn: str = inspect.currentframe().f_code.co_name
 
     logger.info(f"[{_fn}] Iniciando validação de infraestrutura...")
 
@@ -84,7 +88,7 @@ def test_connect() -> bool:
         logger.error(f"[{_fn}] Falha ao verificar/criar banco de dados.")
         return False
 
-    engine = connect_db()
+    engine: Engine | None = connect_db()
 
     if engine is None:
         logger.error(f"[{_fn}] Falha ao conectar ao banco de dados.")

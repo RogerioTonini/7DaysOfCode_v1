@@ -4,7 +4,6 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-# ─── Caminho corrigido: sobe 3 níveis (model → app → 7DayOfCode → Config) ────
 _env_path: Path = (
     Path(__file__).resolve().parent.parent.parent / "Config" / ".env"
 )
@@ -22,7 +21,7 @@ class BancoConfig:
 
 def _get_db_env(key: str, default: str = None, required: bool = True) -> str:
     """Lê variável de ambiente do banco com validação."""
-    value = os.getenv(key, default)
+    value: str | None = os.getenv(key, default)
     if required and value is None:
         raise EnvironmentError(
             f"[config_db.py] Variável obrigatória não encontrada: '{key}'\n"

@@ -9,14 +9,14 @@ Fluxo       :
     4. Se existir     → mantém, apenas loga
     5. Registra todo o procedimento no log
 """
-
+import inspect
 import logging
 
 from sqlalchemy import create_engine, exc, text
+from sqlalchemy.engine import Engine
 
 from app.config_app import cfg_app
 from app.model.config_db import db_cfg
-
 
 logger = logging.getLogger(__name__)
 
@@ -29,6 +29,8 @@ def _engine_sem_banco():
     Returns:
         Engine | None: Engine administrativo ou None em caso de falha.
     """
+    _fn: str = inspect.currentframe().f_code.co_name
+
     connection_string: str = (
         f"mysql+mysqlconnector://{db_cfg.DB_USER}:{db_cfg.DB_PASSWORD}"
         f"@{db_cfg.DB_HOST}:{db_cfg.DB_PORT}"
@@ -36,37 +38,41 @@ def _engine_sem_banco():
     )
 
     if cfg_app.app.DEBUG:
-        logger.debug("[create_db] Conectando ao MySQL sem especificar banco...")
+        logger.debug(f"[{_fn}] - Conectando ao MySQL sem especificar banco...")
         logger.debug(
-            f"[create_db] Host: {db_cfg.DB_HOST} | Porta: {db_cfg.DB_PORT}"
+            f"[{_fn}] - Host: {db_cfg.DB_HOST} | Porta: {db_cfg.DB_PORT}"
         )
 
     try:
-        engine = create_engine(
+        engine: Engine = create_engine(
             connection_string,
             pool_pre_ping=True,
-            echo=cfg_app.app.DEBUG,
+            echo=False,
+            # echo=cfg_app.app.DEBUG,
         )
 
         # Valida a conexão administrativa
         with engine.connect() as conn:
             conn.execute(text("SELECT 1"))
 
-        logger.info("[create_db] Conexão administrativa ao MySQL OK.")
+        logger.info(f"[{_fn}] - Conexão administrativa ao MySQL OK.")
         return engine
 
     except exc.OperationalError as e:
+        _ex: str = type(e).__name__
         logger.error(
-            f"[create_db] [OperationalError] Falha na conexão administrativa: {e}"
+            f"[{_fn}] - [{_ex}] - Falha na conexão administrativa: {e}"
         )
         return None
 
     except exc.SQLAlchemyError as e:
-        logger.error(f"[create_db] [SQLAlchemyError] Erro inesperado: {e}")
+        _ex: str = type(e).__name__
+        logger.error(f"[{_fn}] - [{_ex}] - Erro inesperado: {e}")
         return None
 
     except Exception as e:
-        logger.error(f"[create_db] [Exception] Erro geral: {e}")
+        _ex: str = type(e).__name__
+        logger.error(f"[{_fn}] - [{_ex}] - Erro geral: {e}")
         return None
 
 
@@ -101,14 +107,16 @@ def create_database() -> bool:
         bool: True se o banco estiver disponível (criado ou já existente),
         False em caso de falha.
     """
+    _fn: str = inspect.currentframe().f_code.co_name
+
     nome_banco: str = db_cfg.DB_NAME
 
-    logger.info(f"[create_db] Verificando banco de dados: '{nome_banco}'...")
+    logger.info(f"[{_fn}] - Verificando banco de dados: '{nome_banco}'...")
 
-    engine = _engine_sem_banco()
+    engine: Engine | None = _engine_sem_banco()
     if engine is None:
         logger.error(
-            "[create_db] Não foi possível estabelecer conexão administrativa."
+            f"[{_fn}] - Não foi possível estabelecer conexão administrativa."
         )
         return False
 
@@ -117,14 +125,13 @@ def create_database() -> bool:
 
             if _banco_existe(conn, nome_banco):
                 logger.info(
-                    f"[create_db] Banco '{nome_banco}' já existe. "
+                    f"[{_fn}] - Banco '{nome_banco}' já existe. "
                     "Nenhuma alteração realizada."
                 )
             else:
                 logger.info(
-                    f"[create_db] Banco '{nome_banco}' não encontrado. Criando..."
+                    f"[{_fn}] - Banco '{nome_banco}' não encontrado. Criando..."
                 )
-
                 conn.execute(
                     text(
                         f"CREATE DATABASE `{nome_banco}` "
@@ -132,28 +139,28 @@ def create_database() -> bool:
                         f"COLLATE utf8mb4_unicode_ci"
                     )
                 )
-
                 logger.info(
-                    f"[create_db] Banco '{nome_banco}' criado com sucesso "
+                    f"[{_fn}] - Banco '{nome_banco}' criado com sucesso "
                     f"(charset: utf8mb4 | collation: utf8mb4_unicode_ci)."
                 )
 
         return True
 
     except exc.OperationalError as e:
-        logger.error(
-            f"[create_db] [OperationalError] Erro ao verificar/criar banco: {e}"
-        )
+        _ex: str = type(e).__name__
+        logger.error(f"[{_fn}] - [{_ex}] - Erro ao verificar/criar banco: {e}")
         return False
 
     except exc.SQLAlchemyError as e:
-        logger.error(f"[create_db] [SQLAlchemyError] Erro inesperado: {e}")
+        _ex: str = type(e).__name__
+        logger.error(f"[{_fn}] - [{_ex}] - Erro inesperado: {e}")
         return False
 
     except Exception as e:
-        logger.error(f"[create_db] [Exception] Erro geral: {e}")
+        _ex: str = type(e).__name__
+        logger.error(f"[{_fn}] - [{_ex}] - Erro geral: {e}")
         return False
 
     finally:
         engine.dispose()
-        logger.debug("[create_db] Conexão administrativa encerrada.")
+        logger.debug(f"[{_fn}] - Conexão administrativa encerrada.")

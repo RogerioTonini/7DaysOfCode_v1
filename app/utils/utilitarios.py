@@ -1,29 +1,78 @@
-import os
-import pandas as pd
+import inspect
 
-from pathlib import Path
-from typing import Optional, Union
+# import os
+# import pandas as pd
 
-def concat_path_file(strPathFile: str, strFile: str, strExtFile: str) -> str:
+# from pathlib import Path
+# from typing import Optional, Union
+
+
+def fxRemoveFileIfExists(strPathFile: str) -> None:
     """
-    Função..: concat_path_file
-    Objetivo: Concatena o Caminho e o Nome do arquivo em uma única variável
-            Caso o diretório não exista, ele será criado.
+    Função..: fxRemoveFileIfExists
+    Objetivo: Remover o arquivo caso ele exista.
     """
-    if not strPathFile:
-        raise ValueError("O caminho base não pode ser vazio.")
+    if os.path.isfile(strPathFile):
+        os.remove(strPathFile)
 
-    if not strFile:
-        raise ValueError("O nome do arquivo não pode ser vazio.")
 
-    # Cria o diretório caso não exista
-    os.makedirs(strPathFile, exist_ok=True)
+def fxAcertaDataHora(df, strNomeColuna):
+    """
+    Função - fxAcertaDataHora
+    Objetivo.: Transformar as colunas: [data_emprestimo, data_devolucao,
+        data_renovacao'] que possuem o formato:
+        YYYY-mm-dd HH:MM:SS.ffffffff para o formato: YYYY-mm-dd HH:MM
+    """
+    intContReg = 1
+    lstDataHora = []
+    #
+    for conteudo in df[strNomeColuna]:
+        if str(conteudo) == "nan":
+            conteudo = ""
+        elif len(conteudo) > 16:
+            conteudo = conteudo[:16]
+        #
+        lstDataHora.append(conteudo)
+        print(f"Registro: {str(intContReg)}, Data Devolucao: {conteudo}")
+        intContReg += 1
+    #
+    df[strNomeColuna] = lstDataHora
+    return None
 
-    # Garante extensão do arquivo
-    if strExtFile and not strFile.lower().endswith(f".{strExtFile}"):
-        strFile = f"{strFile}.{strExtFile}"
 
-    return os.path.join(strPathFile, strFile)
+"""
+# Função: Converte os valores de uma coluna STRING de um DataFrame para Data
+"""
+fxConvParaData = lambda df, strNomeColuna: pd.to_datetime(df[strNomeColuna])
+
+"""
+# Função: Converte o valor de uma Variável STRING para Data
+"""
+fxConvStrParaData = lambda strNomeColuna: pd.to_datetime(
+    strNomeColuna, dayfirst=True
+)
+
+
+# def concat_path_file(strPathFile: str, strFile: str, strExtFile: str) -> str:
+#     """
+#     Função..: concat_path_file
+#     Objetivo: Concatena o Caminho e o Nome do arquivo em uma única variável
+#             Caso o diretório não exista, ele será criado.
+#     """
+#     if not strPathFile:
+#         raise ValueError("O caminho base não pode ser vazio.")
+
+#     if not strFile:
+#         raise ValueError("O nome do arquivo não pode ser vazio.")
+
+#     # Cria o diretório caso não exista
+#     os.makedirs(strPathFile, exist_ok=True)
+
+#     # Garante extensão do arquivo
+#     if strExtFile and not strFile.lower().endswith(f".{strExtFile}"):
+#         strFile = f"{strFile}.{strExtFile}"
+
+#     return os.path.join(strPathFile, strFile)
 
 # def save_file_parquet(
 #     df: pd.DataFrame,
@@ -128,44 +177,3 @@ def concat_path_file(strPathFile: str, strFile: str, strExtFile: str) -> str:
 #             return False
 
 #     return sucesso
-
-
-def fxRemoveFileIfExists(strPathFile: str) -> None:
-    """
-    Função..: fxRemoveFileIfExists
-    Objetivo: Remover o arquivo caso ele exista.
-    """
-    if os.path.isfile(strPathFile):
-        os.remove(strPathFile)
-
-def fxAcertaDataHora(df, strNomeColuna):
-    """
-    Função - fxAcertaDataHora
-    Objetivo.: Transformar as colunas: [data_emprestimo, data_devolucao, data_renovacao'] que possuem o
-            formato: YYYY-mm-dd HH:MM:SS.ffffffff para o formato: YYYY-mm-dd HH:MM
-    """
-    intContReg  = 1
-    lstDataHora = []
-    #
-    for conteudo in df[strNomeColuna]:
-        if str(conteudo) == 'nan':
-            conteudo = ''
-        elif len(conteudo) > 16:
-            conteudo = conteudo[:16]
-        #
-        lstDataHora.append(conteudo)
-        print(f'Registro: {str(intContReg)}, Data Devolucao: {conteudo}')
-        intContReg += 1
-    #
-    df[strNomeColuna] = lstDataHora
-    return None
-
-"""
-# Função: Converte os valores de uma coluna STRING de um DataFrame para Data
-"""
-fxConvParaData = lambda df, strNomeColuna : pd.to_datetime(df[strNomeColuna])
-
-"""
-# Função: Converte o valor de uma Variável STRING para Data
-"""
-fxConvStrParaData = lambda strNomeColuna : pd.to_datetime(strNomeColuna, dayfirst=True)

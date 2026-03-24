@@ -27,7 +27,7 @@ class AppConfig:
 
 def _get_env(key: str, default: str = None, required: bool = True) -> str:
     """Lê variável de ambiente com validação."""
-    value = os.getenv(key, default)
+    value: str | None = os.getenv(key, default)
     if required and value is None:
         raise EnvironmentError(
             f"[config.py] Variável obrigatória não encontrada: '{key}'\n"
@@ -38,15 +38,18 @@ def _get_env(key: str, default: str = None, required: bool = True) -> str:
 
 @dataclass(frozen=True)
 class PandasConfig:
-    """Configurações de exibição do Pandas."""
-
+    """
+    Configurações de exibição do Pandas.
+    """
     MAX_ROWS: int = 10_000
     MAX_COLUMNS: int = 30
     DISPLAY_WIDTH: int | None = None
     FLOAT_FORMAT: str = "{:.2f}"
 
     def aplicar(self) -> None:
-        """Aplica as configurações ao Pandas."""
+        """
+        Aplica as configurações ao Pandas.
+        """
         pd.set_option("display.max_rows", self.MAX_ROWS)
         pd.set_option("display.max_columns", self.MAX_COLUMNS)
         pd.set_option("display.width", self.DISPLAY_WIDTH)
@@ -54,7 +57,9 @@ class PandasConfig:
         pd.set_option("display.precision", 2)
 
     def resetar(self) -> None:
-        """Reseta configurações para o padrão do Pandas."""
+        """
+        Configura para o padrão do Pandas.
+        """
         pd.reset_option("display.max_rows")
         pd.reset_option("display.max_columns")
         pd.reset_option("display.width")
@@ -63,8 +68,9 @@ class PandasConfig:
 
 @dataclass(frozen=True)
 class ArquivoConfig:
-    """Configurações de formatos de arquivo."""
-
+    """
+    Configurações de formatos de arquivo.
+    """
     SEP_CSV: str = ","
     EXT_CSV: str = "csv"
     EXT_EXCEL: str = "xlsx"
@@ -75,27 +81,28 @@ class ArquivoConfig:
 
 @dataclass(frozen=True)
 class BancoDadosConfig:
-    """Nomes das tabelas no padrão medalhão."""
-
+    """
+    Nomes das tabelas no padrão medalhão.
+    """
     TB_EMPRESTIMOS_RAW: str = "tb_emprestimos_raw"
-    DB_EMPR_BRONZE: str = "DB_Empr_Bronze"
-    DB_EMPR_SILVER: str = "DB_Empr_Silver"
-    DB_EMPR_SILVER_V2: str = "DB_Empr_Silver_V2"
-    DB_EMPR_GOLD: str = "DB_Empr_Gold"
-    DB_EMPR_DATA: str = "DB_Empr_Data"
-    DB_EMPR_ANO: str = "DB_Empr_Ano"
-    DB_EMPR_MES: str = "DB_Empr_Mes"
-    DB_EMPR_HORA: str = "DB_Empr_Hora"
-    DB_EMPR_DUPLICADOS: str = "DB_Empr_Duplicados"
-    DB_EMPR_INCONSISTENTE: str = "DB_Empr_Inconsistente"
-    DB_EMPR_PERDIDOS: str = "DB_Empr_Perdidos"
-
+    # DB_EMPR_BRONZE: str = "DB_Empr_Bronze"
+    # DB_EMPR_SILVER: str = "DB_Empr_Silver"
+    # DB_EMPR_SILVER_V2: str = "DB_Empr_Silver_V2"
+    # DB_EMPR_GOLD: str = "DB_Empr_Gold"
+    # DB_EMPR_DATA: str = "DB_Empr_Data"
+    # DB_EMPR_ANO: str = "DB_Empr_Ano"
+    # DB_EMPR_MES: str = "DB_Empr_Mes"
+    # DB_EMPR_HORA: str = "DB_Empr_Hora"
+    # DB_EMPR_DUPLICADOS: str = "DB_Empr_Duplicados"
+    # DB_EMPR_INCONSISTENTE: str = "DB_Empr_Inconsistente"
+    # DB_EMPR_PERDIDOS: str = "DB_Empr_Perdidos"
 
 
 @dataclass(frozen=True)
 class CaminhosConfig:
-    """Configurações de caminhos locais e URLs externas."""
-
+    """
+    Configurações de caminhos locais e URLs externas.
+    """
     PATH_DATA: Path = field(
         default_factory=lambda: Path(
             os.getenv(
@@ -127,11 +134,14 @@ class CaminhosConfig:
 
 @dataclass(frozen=True)
 class ParametrosConfig:
-    """Parâmetros de negócio do sistema."""
-
+    """
+    Parâmetros de negócio do sistema.
+    """
     ANO_INICIAL: int = 2010
     ANO_FINAL: int = 2021
-    QTD_REG_LOTE: int = 1000
+    QTD_REG_LOTE: int = 1_000
+    MAX_TENTATIVAS: int = 3
+    ESPERA_SEGUNDOS: int = 8
 
 
 @dataclass(frozen=True)
@@ -142,7 +152,6 @@ class Config:
     Logging → app/utils/config_log.py
     Banco   → app/model/config_db.py
     """
-
     app: AppConfig = field(
         default_factory=lambda: AppConfig(
             DEBUG=_get_env("DEBUG", "False").lower() == "true",
