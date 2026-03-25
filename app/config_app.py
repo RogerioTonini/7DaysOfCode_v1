@@ -114,7 +114,8 @@ class CaminhosConfig:
     PATH_LOG: Path = field(
         default_factory=lambda: Path(
             os.getenv(
-                "LOGS_PATH", "C:/Users/rtoni/OneDrive/Git-Dados/7DaysOfCode/log"
+                "LOGS_PATH",
+                "C:/Users/rtoni/OneDrive/Git-Dados/7DaysOfCode/log",
             )
         )
     )
