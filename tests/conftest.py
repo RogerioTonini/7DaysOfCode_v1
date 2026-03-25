@@ -30,7 +30,7 @@ _TEST_ENV: dict[str, str] = {
     "DEBUG": "False",
     "LOG_LEVEL": "DEBUG",
     "DATA_PATH": "/tmp/test_data",
-    "LOGS_PATH": "/tmp/test_logs",
+    "LOGS_PATH": "test_logs",
 }
 
 for _key, _value in _TEST_ENV.items():
