@@ -45,10 +45,10 @@ A diretoria gostaria de entender se a quantidade de empréstimos está diminuind
 
 Faça uma análise em relação à visualização gerada. Obs.: Atente-se para a quantidade de exemplares emprestados, e não de empréstimos realizados.
 
-A diretoria também gostaria de gerenciar melhor os recursos humanos da biblioteca de acordo com a demanda de trabalho existente. Por exemplo:
-
-gerenciar a programação de férias dos colaboradores de acordo com os meses de menor demanda;
-programar atividades que não sejam de atendimento ao usuário para períodos específicos de menor demanda.
+A diretoria também gostaria de gerenciar melhor os recursos humanos da biblioteca de acordo com a demanda de trabalho existente.
+Por exemplo:
+- gerenciar a programação de férias dos colaboradores de acordo com os meses de menor demanda;
+- programar atividades que não sejam de atendimento ao usuário para períodos específicos de menor demanda.
 Há uma suspeita interna de que os meses com maior número de exemplares emprestados sejam MARÇO e SETEMBRO, mas não foi realizada uma análise real sobre isso. Gere uma tabela com a Quantidade total de exemplares emprestados por mês e descubra quais meses são os que possuem a maior quantidade de empréstimos realizados.
 
 Plote um gráfico linhas.

@@ -25,52 +25,26 @@ Layout dos arquivos - https://github.com/RogerioTonini/7DaysOfCode_v1/blob/main/
 
 Etapas do projeto - https://github.com/RogerioTonini/7DaysOfCode_v1/blob/main/docs/Etapas-Projeto.md
 
+Estrutura de pastas - https://github.com/RogerioTonini/7DaysOfCode_v1/blob/main/docs/Estrutura-Pastas.md
+
 ## Tecnologias utilizadas
 
-- IDE - Visual Studio Code - 1.109.3
-- Python - versão 3.11.3
-- PIPX - 1.8.0
-- ipython - 8.12.3
-- Pyenv - 3.1.1
-- Poetry - 1.8.5
+- _**IDE**_: Visual Studio Code ou Antigravity
+- _**Banco de dados**_: MySQL
 
-## Extensões do VSCode que tenho habilitadas no projeto
-
-| _*Nome da extensão*_                          | _*ID Identifier*_                                          |
-| --------------------------------------------- | ---------------------------------------------------------- |
-| autoDocstring - Python Docstring Generator    | njpwerner.autodocstring                                    |
-| Auto Rename Tag                               | formulahendry.auto-rename-tag                              |
-| Bash Debug                                    | rogalmic.bash-debug                                        |
-| Brazilian Portuguese - Code Spell Checker     | streetsidesoftware.code-spell-checker-portuguese-brazilian |
-| Code Runner                                   | formulahendry.code-runner                                  |
-| Code Spell Checker                            | streetsidesoftware.code-spell-checker                      |
-| Draw.io Integration                           | hediet.vscode-drawio                                       |
-| GitHub Copilot Chat                           | github.copilot-chat                                        |
-| GitHub Issue Notebooks                        | ms-vscode.vscode-github-issue-notebooks                    |
-| GitHub Pull Requests                          | github.vscode-pull-request-github                          |
-| Jupyter                                       | ms-toolsai.jupyter                                         |
-| Jupyter Keymap                                | ms-toolsai.jupyter-keymap                                  |
-| Jupyter Notebook Rendere                      | ms-toolsai.jupyter-renderers                               |
-| Jupyter Cell Tags                             | ms-toolsai.vscode-jupyter-cell-tags                        |
-| Live Server                                   | ritwickdey.liveserver                                      |
-| Markdown All in One                           | yzhang.markdown-all-in-one                                 |
-| Markdown Preview Github Styling               | bierner.markdown-preview-github-styles                     |
-| Notepad++ keymap                              | ms-vscode.notepadplusplus-keybindings                      |
-| Prettier - Code formatter                     | esbenp.prettier-vscode                                     |
-| Python Indent                                 | kevinrose.vsc-python-indent                                |
-| Python                                        | ms-python.python                                           |
-| Python                                        | ms-python.python                                           |
-| Python                                        | ms-python.python                                           |
-| Pylance                                       | ms-python.vscode-pylance                                   |
-| Test Adapter Converter                        | ms-vscode.test-adapter-converter                           |
-| shell-format                                  | foxundermoon.shell-format                                  |
-| ShellCheck                                    | timonwong.shellcheck                                       |
-| Test Explorer UI                              | hbenl.vscode-test-explorer                                 |
-| vscode-icons                                  | vscode-icons-team.vscode-icons                             |
-| vscode-pdf                                    | tomoki1207.pdf                                             |
-| vscode-solution-explorer                      | fernandoescolar.vscode-solution-explorer                   |
-| vscode-styled-components                      | styled-components.vscode-styled-components                 |
-| VS Code Jupyter Notebook Previewer            | jithurjacob.nbpreviewer                                    |
+| _**Skill**_ | _**Versão**_ |
+| - | - |
+| Python |  3.11.3 |
+| PIPX | 1.8.0 |
+| ipython | 8.12.3 |
+| Pyenv | 3.1.1 |
+| Poetry | 1.8.5 |
+| python-dotenv | 1.2.2 |
+| sqlalchemy | 2.0.48 |
+| psycopg2-binary | 2.9.11 |
+| pytest | 9.0.2 |
+| pytest-cov | 7.1.0 |
+| mysql-connector-python | 9.6.0 |
 
 ## Procedimentos de instalação
 
@@ -114,35 +88,23 @@ Etapas do projeto - https://github.com/RogerioTonini/7DaysOfCode_v1/blob/main/do
   cp -r .githooks-scripts/. .git/hooks/
   ```
 
-## Estrutura do projeto
+7. Criar a pasta config e o arquivo .env.
+  ```bash
+  mkdir config
+  cd config
+  touch .env
+  ```
 
-```
-├── 📁 .githooks-scripts
-│   └── 📄 commit-mensagem            # Backup do .git\hooks\commit-msg
-│
-├── 📁 .vscode
-│   ├── 📝 extensions.json
-│   ├── 📝 launch.json
-│   ├── 📝 settings.json
-│   └── 📝 tasks.json
-│
-├── 📁 app
-│   ├── 📄 info-Dados.ipynb           # Informações sobre a estrutura de dados
-│   └── 📄 main.ipynb                 # Faz o processo de ETL
-│
-│
-├── 📁 docs
-│   ├── 📝 Dicas-Solucoes.md          # Dicas e as Soluções do Autor
-│   ├── 📝 Estrutura-Dados.md         # Estrutura dos dados ao efetuar o ETL
-│   └── 📝 Etapas-Projeto.md          # Etapas do Projeto
-│
-├── ⚙️ .gitattributes
-├── ⚙️ .gitignore
-├── 📄 LICENSE
-├── 📝 README.md
-├── 📄 poetry.lock
-└── ⚙️ pyproject.toml
-```
+8. Adicionar as variáveis de ambiente no arquivo .env
+  ```bash
+  DB_USER     = 'usuario'               # Usuário proprietário do banco de dados
+  DB_PASSWORD = '[senha]'               # Senha do usuário proprietário do banco de dados
+  DB_NAME     = 'db_bibliotecas_ufrn'   # Nome do banco de dados
+
+  # Aplicação
+  DEBUG     = True                     # Ativa o modo debug
+  LOG_LEVEL = DEBUG                    # Nível de log
+  ```
 
 ## Atualização no GitHub - Push Inicial
 
@@ -159,7 +121,7 @@ configurar tratamento de arquivos binários,
 ### Commit: Versão do Python e Dependências do Projeto
 
 ```bash
-git add .python-version pyproject.toml poetry.lock
+git add .python-version pyproject.toml
 git commit -m "build:
 - Configuração da versão do Python utilizada no projeto,
 - Configuração do Poetry e bibliotecas (dependências) do projeto"
@@ -175,28 +137,23 @@ git commit -m "chore(vscode): adicionar configurações do editor"
 ### Commit: README.md
 
 ```bash
-git add README.md
-git commit -m "docs: adicionar README.md com informações do projeto"
+git add README.md docs/.
+git commit -m "docs: adicionado documentação do projeto"
 ```
 
 ### Commit: App
 
 ```bash
-git add app/
-git commit -m "feat(app): criar estrutura base da aplicação"
+git add main.py app/.
+git commit -m "feat(app): adicionado estrutura base da aplicação"
 ```
 
 ### Commit: Testes
 
 ```bash
-git add tests/
-git commit -m "test: adicionar estrutura de testes"
+git add pytest.ini tests/
+git commit -m "test: adicionado estrutura de testes"
 ```
 
 ## Execução
 
-O arquivo _**main.ipynb**_ é responsável por realizar a etapa de ETL.
-Criei  uma *Contante* chamada _*PATH_BASE*_, responsável por armazenar o local onde serão gravados os diversos arquivos gerados no processo.
-Altere o conteúdo para pasta que desejar.
-
-_**Importante:**_ Como os arquivos gerados podem ser maiores que 100GB e o GitHub não aceita arquivos maiores que isso porque o objetivo não é armazenar dados.
